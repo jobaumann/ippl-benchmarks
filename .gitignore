@@ -1,0 +1,28 @@
+# Benchmark results
+results/*/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Plots
+*.png
+*.pdf
+
+# Temporary files
+*.tmp
+*.log
+*.dat
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
