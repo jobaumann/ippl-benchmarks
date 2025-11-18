@@ -9,9 +9,9 @@ parent_dir=$PWD
 for g in "${nodes[@]}"
 do
     echo $g
-    dir="FFT_strong_scaling/${n}_${nt}/nodes_$g"
+    dir="strong_scaling/${n}_${nt}/nodes_$g"
     mkdir -p "$dir"
-    cp "jobscript_fft.tmpl" "$dir/jobscript.sh"
+    cp "jobscript.tmpl" "$dir/jobscript.sh"
     sed -i "s/_nx_/${n}/g" "$dir/jobscript.sh"
     sed -i "s/_ny_/${n}/g" "$dir/jobscript.sh"
     sed -i "s/_nz_/${n}/g" "$dir/jobscript.sh"
