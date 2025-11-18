@@ -81,7 +81,7 @@ generate_job_script() {
 #SBATCH --gpus-per-task=${GPUS_PER_TASK}
 #SBATCH --cpus-per-task=${CPUS_PER_TASK}
 #SBATCH --exclusive
-#SBATCH --uenv=/capstor/store/cscs/cscs/public/uenvs/opal-x-gh200-mpich-gcc-2025-09-28.squashfs
+#SBATCH --uenv=/capstor/store/cscs/cscs/public/uenvs/opal-x-gh200-mpich-gcc-2025-09-28-cuda12.8.squashfs
 #SBATCH --view=develop
 #SBATCH --output=${RESULTS_DIR}/${branch}_${label}.out
 #SBATCH --error=${RESULTS_DIR}/${branch}_${label}.err
