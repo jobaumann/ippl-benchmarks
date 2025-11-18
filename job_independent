@@ -18,7 +18,7 @@
 #SBATCH --output=independent_%j.out
 #SBATCH --error=independent_%j.err
 
-export WRAPPER=/users/smayani/wrapper-mpi.sh
+export WRAPPER=/users/bjonah/src/adelmann/ippl-benchmarks/wrapper-mpi.sh
 
 mkdir -p data
 export OMP_PROC_BIND=spread
