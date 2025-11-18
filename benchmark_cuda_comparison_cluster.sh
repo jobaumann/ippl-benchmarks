@@ -10,7 +10,7 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Configuration
-ACCOUNT="${SLURM_ACCOUNT:-csstaff}"  # Override with your account
+ACCOUNT="${SLURM_ACCOUNT:-c41}"  # Override with your account
 TIME_LIMIT="01:00:00"  # Adjust as needed
 NODES=1
 TASKS_PER_NODE=1
