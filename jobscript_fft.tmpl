@@ -1,0 +1,30 @@
+#!/bin/bash
+# ---
+# sbatch settings for gh200 alps
+# ---
+#SBATCH --job-name=landauFFT
+#SBATCH --account=d127
+#SBATCH --time=00:15:00
+
+#SBATCH --nodes=_nodes_
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-task=1
+#SBATCH --cpus-per-task=72
+#SBATCH --exclusive
+
+#SBATCH --uenv=/capstor/store/cscs/cscs/public/uenvs/opal-x-gh200-mpich-gcc-2025-09-28-cuda12.8.squashfs
+#SBATCH --view=develop
+
+#SBATCH --output=landauFFT_%j.out
+#SBATCH --error=landauFFT_%j.err
+
+export WRAPPER=/users/smayani/wrapper-mpi.sh
+
+mkdir -p data
+export OMP_PROC_BIND=spread
+export OMP_PLACES=threads
+export OMP_NUM_THREADS=72
+
+export exedir=/users/smayani/ippl/build_cuda/alpine
+
+srun $WRAPPER ${exedir}/LandauDamping _nx_ _ny_ _nz_ _np_ _nt_ FFT 1.0 LeapFrog --overallocate 2.0 --info 5
