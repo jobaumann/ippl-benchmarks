@@ -26,8 +26,8 @@ EXE="${BUILD_DIR}/alpine/ExamplesWithoutPicManager/IndependentParticlesTest"
 
 # ── Benchmark parameters ──────────────────────────────────────────────────────
 RANKS_LIST=(1 4 9 19 39)
-PARTICLES_LIST=(1000000 2000000 5000000 10000000)
-TIMESTEPS=200
+PARTICLES_LIST=(10000000 20000000 50000000 100000000)
+TIMESTEPS=20000
 LBFREQ=10
 
 # ── Results directory ─────────────────────────────────────────────────────────
