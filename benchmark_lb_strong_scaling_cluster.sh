@@ -28,7 +28,7 @@ EXE="${BUILD_DIR}/alpine/ExamplesWithoutPicManager/IndependentParticlesTest"
 RANKS_LIST=(1 4 9 19 39)
 PARTICLES_LIST=(1000000 2000000 5000000 10000000)
 TIMESTEPS=200
-LBFREQ=40
+LBFREQ=10
 
 # ── Results directory ─────────────────────────────────────────────────────────
 RESULTS_DIR="${SCRIPT_DIR}/results/benchmark_lb_strong_scaling_cluster_$(date +%Y%m%d_%H%M%S)"
