@@ -16,7 +16,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # ── Cluster config ────────────────────────────────────────────────────────────
 ACCOUNT="c41"
-TIME_LIMIT="00:30:00"
+TIME_LIMIT="01:00:00"
 UENV="prgenv-gnu/25.6:v2"
 CPUS_PER_TASK=1   # OMP_NUM_THREADS per MPI rank
 
@@ -25,8 +25,8 @@ BUILD_DIR="${IPPL_DIR:-${SCRIPT_DIR}/../ippl}/build-openmp"
 EXE="${BUILD_DIR}/alpine/ExamplesWithoutPicManager/IndependentParticlesTest"
 
 # ── Benchmark parameters ──────────────────────────────────────────────────────
-RANKS_LIST=(4 9 19 39)
-PARTICLES_LIST=(100000 200000 500000 1000000)
+RANKS_LIST=(1 4 9 19 39)
+PARTICLES_LIST=(1000000 2000000 5000000 10000000)
 TIMESTEPS=200
 LBFREQ=20
 
