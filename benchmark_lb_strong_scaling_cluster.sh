@@ -1,9 +1,9 @@
 #!/bin/bash
 # =============================================================================
-# LB Strong Scaling Benchmark — Generator Script (A100, SLURM)
+# LB Strong Scaling Benchmark — Generator Script (CPU/OpenMP, SLURM)
 #
 # Generates and submits one SLURM job per (ranks, particles) combination.
-# Results land in results/benchmark_lb_strong_scaling_a100_<timestamp>/
+# Results land in results/benchmark_lb_strong_scaling_cluster_<timestamp>/
 #
 # Usage:
 #   ./benchmark_lb_strong_scaling_cluster.sh        # submit all 16 jobs
@@ -17,12 +17,11 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # ── Cluster config ────────────────────────────────────────────────────────────
 ACCOUNT="c41"
 TIME_LIMIT="00:30:00"
-UENV="/capstor/store/cscs/cscs/public/uenvs/opal-x-a100-mpich-gcc.squashfs"  # TODO: verify path
-GPUS_PER_TASK=1
-CPUS_PER_TASK=8   # CPU threads per rank — adjust to match A100 node layout
+UENV="prgenv-gnu/25.6:v2"
+CPUS_PER_TASK=1   # OMP_NUM_THREADS per MPI rank
 
 # ── Binary ────────────────────────────────────────────────────────────────────
-BUILD_DIR="${IPPL_DIR:-${SCRIPT_DIR}/../ippl}/build-a100"
+BUILD_DIR="${IPPL_DIR:-${SCRIPT_DIR}/../ippl}/build-openmp"
 EXE="${BUILD_DIR}/alpine/ExamplesWithoutPicManager/IndependentParticlesTest"
 
 # ── Benchmark parameters ──────────────────────────────────────────────────────
@@ -32,7 +31,7 @@ TIMESTEPS=200
 LBFREQ=20
 
 # ── Results directory ─────────────────────────────────────────────────────────
-RESULTS_DIR="${SCRIPT_DIR}/results/benchmark_lb_strong_scaling_a100_$(date +%Y%m%d_%H%M%S)"
+RESULTS_DIR="${SCRIPT_DIR}/results/benchmark_lb_strong_scaling_cluster_$(date +%Y%m%d_%H%M%S)"
 mkdir -p "${RESULTS_DIR}"
 
 DRY_RUN=false
@@ -63,11 +62,10 @@ for NP in "${PARTICLES_LIST[@]}"; do
 #SBATCH --account=${ACCOUNT}
 #SBATCH --time=${TIME_LIMIT}
 #SBATCH --ntasks=${RANKS}
-#SBATCH --gpus-per-task=${GPUS_PER_TASK}
 #SBATCH --cpus-per-task=${CPUS_PER_TASK}
 #SBATCH --exclusive
 #SBATCH --uenv=${UENV}
-#SBATCH --view=develop
+#SBATCH --view=default
 #SBATCH --output=${OUT_FILE}
 #SBATCH --error=${ERR_FILE}
 
