@@ -78,7 +78,6 @@ echo "LB freq:   ${LBFREQ}"
 echo "============================================"
 echo ""
 
-export WRAPPER=/user-environment/wrapper-mpi.sh
 export OMP_NUM_THREADS=1
 export OMP_PROC_BIND=spread
 export OMP_PLACES=threads
@@ -89,10 +88,10 @@ if [ ! -f "\${EXE}" ]; then
     exit 1
 fi
 
-echo "Running: srun \${WRAPPER} \${EXE} ${NP} ${TIMESTEPS} ${LBFREQ} --info 10"
+echo "Running: srun \${EXE} ${NP} ${TIMESTEPS} ${LBFREQ} --info 10"
 echo ""
 
-srun \${WRAPPER} "\${EXE}" ${NP} ${TIMESTEPS} ${LBFREQ} --info 10 > "${TXT_FILE}" 2>&1
+srun "\${EXE}" ${NP} ${TIMESTEPS} ${LBFREQ} --info 10 > "${TXT_FILE}" 2>&1
 
 # Copy timing.dat if produced (written to the cwd = job launch dir)
 if [ -f timing.dat ]; then
